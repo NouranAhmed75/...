@@ -156,35 +156,47 @@ footer {
     to { opacity: 1; transform: translateY(0); }
 }
 
-
 @media (max-width: 768px) {
+    /* Stack navigation links for better spacing */
     nav ul {
+        flex-direction: row;
         flex-wrap: wrap;
-        justify-content: space-around;
+        justify-content: center;
     }
 
-    /* 1. Remove the 'display: block' that was breaking the table */
+    nav ul li a {
+        padding: 10px 15px;
+        font-size: 14px;
+    }
+
+    /* THE FIX: Revert table elements to their natural behavior */
     table, thead, tbody, th, td, tr {
-        display: table; /* Reset to default table behavior */
-        width: 100%;
-    }
-
-    /* 2. Enable horizontal scrolling for the table container instead of stacking */
-    main {
-        padding: 10px;
-    }
-
-    section {
-        padding: 15px;
-        overflow-x: auto; /* This allows the table to scroll if it's too wide */
+        display: revert; /* Clears the 'display: block' from your previous code */
     }
 
     table {
-        min-width: 600px; /* Ensures the table stays readable on small screens */
+        width: 100%;
+        margin-top: 10px;
     }
 
-    td, th {
+    /* Wrap the table in a scrollable area if it's too wide for the phone */
+    section {
+        padding: 15px;
+        overflow-x: auto; 
+        -webkit-overflow-scrolling: touch;
+    }
+
+    /* Style cells to match your reference image */
+    th, td {
         padding: 10px 5px;
-        font-size: 14px;
+        font-size: 13px;
+        text-align: center;
+        border-bottom: 1px solid #eee;
+        white-space: nowrap; /* Keeps data on one line like the screenshot */
+    }
+
+    th {
+        font-size: 12px;
     }
 }
+    
